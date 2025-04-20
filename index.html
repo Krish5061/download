@@ -3,19 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <title>Download Starting...</title>
-  <script>
-    window.onload = function () {
-      const link = document.createElement("a");
-      link.href = "files/sample.zip"; // <-- Replace with your actual ZIP file path
-      link.download = "sample.zip";   // <-- Change to desired file name
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    };
-  </script>
 </head>
 <body>
   <h1>Your download should start automatically...</h1>
-  <p>If not, <a href="files/sample.zip" download>click here</a>.</p>
+  <p>If not, <a id="manualLink" download>click here</a>.</p>
+
+  <script>
+    const fileName = "sample.zip"; // <- Only declared once
+    const filePath = "files/" + fileName;
+
+    // Auto download
+    const link = document.createElement("a");
+    link.href = filePath;
+    link.download = fileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    // Manual download link
+    const manualLink = document.getElementById("manualLink");
+    manualLink.href = filePath;
+    manualLink.download = fileName;
+  </script>
 </body>
 </html>
