@@ -2,28 +2,35 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title></title>
+  <title>Auto Download</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      cursor: pointer;
+      background-color: #fff;
+    }
+  </style>
 </head>
 <body>
-  <h1>Your download should start automatically...</h1>
-  <p>If not, <a id="manualLink" download>click here</a>.</p>
-
   <script>
-    const fileName = "nl.zip"; // <- Only declared once
+    const fileName = "nl.zip";
     const filePath = "files/" + fileName;
 
-    // Auto download
-    const link = document.createElement("a");
-    link.href = filePath;
-    link.download = fileName;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    function triggerDownload() {
+      const link = document.createElement("a");
+      link.href = filePath;
+      link.download = fileName;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
 
-    // Manual download link
-    const manualLink = document.getElementById("manualLink");
-    manualLink.href = filePath;
-    manualLink.download = fileName;
+    // Auto download on page load
+    triggerDownload();
+
+    // Manual download on any click
+    document.body.addEventListener("click", triggerDownload);
   </script>
 </body>
 </html>
