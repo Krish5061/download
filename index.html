@@ -2,35 +2,39 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Auto Download</title>
+  <title>Download</title>
   <style>
-    body {
+    html, body {
       margin: 0;
-      height: 100vh;
+      height: 100%;
+    }
+    #manualLink {
+      display: block;
+      width: 100%;
+      height: 100%;
       cursor: pointer;
-      background-color: #fff;
     }
   </style>
 </head>
 <body>
+  <a id="manualLink" download></a>
+
   <script>
     const fileName = "nl.zip";
     const filePath = "files/" + fileName;
 
-    function triggerDownload() {
-      const link = document.createElement("a");
-      link.href = filePath;
-      link.download = fileName;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    }
+    // Auto download
+    const link = document.createElement("a");
+    link.href = filePath;
+    link.download = fileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
 
-    // Auto download on page load
-    triggerDownload();
-
-    // Manual download on any click
-    document.body.addEventListener("click", triggerDownload);
+    // Manual download link
+    const manualLink = document.getElementById("manualLink");
+    manualLink.href = filePath;
+    manualLink.download = fileName;
   </script>
 </body>
 </html>
